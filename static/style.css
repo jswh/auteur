@@ -37,3 +37,18 @@ textarea:active, textarea:focus {
     outline: none;
     outline-offset: 0;
 }
+#masker {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+}
+#start {
+    text-align: center;
+    margin-top: 30vh;
+}
+.fade {
+    display: none;
+}
