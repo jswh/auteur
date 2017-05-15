@@ -3,12 +3,35 @@ html,body {
     margin: 0;
     padding: 0;
 }
+textarea:active, textarea:focus, input:active, input:focus {
+    border: none;
+    outline: none;
+    outline-offset: 0;
+}
+textarea, input {
+    width: 94%;
+    height: 100%;
+    margin: 0 3%;
+    border:none;
+    resize: none;
+    outline: none;
+    outline-offset: 0;
+    padding: 0;
+    font-size: inherit;
+    overflow: auto;
+}
+p {
+    margin-top: 0;
+}
+.fade {
+    display: none;
+}
 .large {
     width:100%;
     max-width: 960px;
     height: 100%;
     margin: 0 auto;
-    border: 1px solid #ddd;
+    font-size: 16px;
 }
 .small {
     width: 10vw;
@@ -19,23 +42,16 @@ html,body {
     top:10px;
     font-size: 10%;
 }
-textarea {
-    width: 100%;
-    height: 100%;
-    border:none;
-    resize: none;
-    outline: none;
-    outline-offset: 0;
-    padding: 0;
-    font-size: 16px;
+.title {
+    margin: 5px 3%;
+    padding: 0 2em 0 2em;
+    border-bottom: 2px solid #ccc;
+    overflow: hidden;
 }
-.small textarea {
-    font-size: 10%;
-}
-textarea:active, textarea:focus {
-    border: none;
-    outline: none;
-    outline-offset: 0;
+.title input {
+    font-size: 250%;
+    text-align: center;
+    color: #333;
 }
 #masker {
     position: fixed;
@@ -48,7 +64,4 @@ textarea:active, textarea:focus {
 #start {
     text-align: center;
     margin-top: 30vh;
-}
-.fade {
-    display: none;
 }
