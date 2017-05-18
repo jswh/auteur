@@ -1,8 +1,8 @@
 ready(function () {
     document.getElementById('btn-start').addEventListener('click', function () {
         requestFullscreen(document.documentElement);
+        start();
     });
-    start();
     function requestFullscreen(elem) {
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
