@@ -1,13 +1,19 @@
 function Vim(textarea) {
     textarea.focus();
+    var currentMode = mode.insert;
     var mode = {
         normal: 0,
-        insert: 1
+        insert: 1,
+        modeInsert: function () {
+            currentMode = mode.insert
+        },
+        modeNormal: function () {
+            currentMode = mode.normal
+        }
     }
     var cursorPosBase = {
         padding_left: 0
     }
-    var currentMode = mode.normal;
 
     textarea.addEventListener('click', function (e) {
         var linesToCurrentPostion = textarea.value.substr(0, textarea.selectionStart).split("\n");
@@ -21,24 +27,17 @@ function Vim(textarea) {
             j: moveDown,
             k: moveUp,
             l: moveRight,
-            a: function () {
-                currentMode = mode.insert;
-            },
+            a: modeInsert,
             default: function (e) {
                 e.preventDefault();
             }
         },
         1 : {
-            Escape: function(e) {
-                currentMode = mode.normal;
-            },
-            default: function () {
-
-            }
+            Escape: modeNormal,
+            default: function () {}
         }
     }
     function emulate(e) {
-        console.log(e.key);
         var keyMapping = keyMappings[currentMode];
         var action = keyMapping[e.key]
         if (typeof(action) == 'function') {
@@ -50,10 +49,10 @@ function Vim(textarea) {
     }
 
     function moveLeft() {
-        move(-1)
+        cursorMove(-1)
     }
     function moveRight() {
-        move(1);
+        cursorMove(1);
     }
     function moveUp() {
         var linesToCurrentPostion = textarea.value.substr(0, textarea.selectionStart).split("\n");
@@ -64,7 +63,7 @@ function Vim(textarea) {
         var moveCountToLastLineEnd = currentPositionToLineBeginCount + 1;
         var shouldMove = moveCountToLastLineEnd +
             Math.max(linesToCurrentPostion[currentLineNumber - 1].length - cursorPosBase.padding_left, 0);
-        move(0 - shouldMove);
+        cursorMove(0 - shouldMove);
     }
 
     function moveDown() {
@@ -72,13 +71,14 @@ function Vim(textarea) {
         var linesToCurrentPostion = textarea.value.substr(0, textarea.selectionStart).split("\n");
         var currentLineNumber = linesToCurrentPostion.length - 1;
         if (currentLineNumber === lines.length) return;
+
         var currentPositionToLineEndCount = lines[currentLineNumber].length - linesToCurrentPostion[currentLineNumber].length;
         var shouldMove = currentPositionToLineEndCount + 1 +
             Math.min(lines[currentLineNumber + 1].length, cursorPosBase.padding_left);
-        move(shouldMove);
+        cursorMove(shouldMove);
     }
 
-    function move(count) {
+    function cursorMove(count) {
         var start = textarea.selectionStart + count;
         textarea.setSelectionRange(start, start);
     }
