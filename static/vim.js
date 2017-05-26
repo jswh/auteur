@@ -1,6 +1,6 @@
 function Vim(textarea) {
     textarea.focus();
-    var currentMode = mode.insert;
+    var currentMode = 1;
     var mode = {
         normal: 0,
         insert: 1,
