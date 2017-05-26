@@ -4,6 +4,7 @@ ready(function () {
         start();
     });
     function requestFullscreen(elem) {
+        return;
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
         } else if (elem.webkitRequestFullScreen) {
