@@ -27,13 +27,13 @@ function Vim(textarea) {
             j: moveDown,
             k: moveUp,
             l: moveRight,
-            a: modeInsert,
+            a: mode.modeInsert,
             default: function (e) {
                 e.preventDefault();
             }
         },
         1 : {
-            Escape: modeNormal,
+            Escape: mode.modeNormal,
             default: function () {}
         }
     }
