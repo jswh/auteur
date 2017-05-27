@@ -46,7 +46,7 @@ ready(function () {
         }
         title.value = article.title;
         editor.value = article.content;
-        window.vim = Vim(editor);
+        window.vim = Vim(editor, document.getElementById('vim-mode'));
 
         var lastRender = 0;
         editor.addEventListener('input', saveAndRender, false);

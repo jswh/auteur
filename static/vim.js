@@ -1,4 +1,4 @@
-function Vim(textarea) {
+function Vim(textarea, infoSpan) {
     textarea.focus();
     var currentMode = 1;
     var mode = {
@@ -6,9 +6,11 @@ function Vim(textarea) {
         insert: 1,
         modeInsert: function () {
             currentMode = mode.insert
+            infoSpan.innerHTML = "INTERT MODE";
         },
         modeNormal: function () {
             currentMode = mode.normal
+            infoSpan.innerHTML = "NORMAL MODE";
         }
     }
     var cursorPosBase = {
