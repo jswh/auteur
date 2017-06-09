@@ -75,9 +75,11 @@ function Vim(textarea, infoSpan) {
         if (currentLineNumber === lines.length) return;
 
         var currentPositionToLineEndCount = lines[currentLineNumber].length - linesToCurrentPostion[currentLineNumber].length;
-        var shouldMove = currentPositionToLineEndCount + 1 +
-            Math.min(lines[currentLineNumber + 1].length, cursorPosBase.padding_left);
-        cursorMove(shouldMove);
+        if (lines[currentLineNumber + 1] !== undefined) {
+            var shouldMove = currentPositionToLineEndCount + 1 +
+                Math.min(lines[currentLineNumber + 1].length, cursorPosBase.padding_left);
+            cursorMove(shouldMove);
+        }
     }
 
     function cursorMove(count) {

@@ -41,6 +41,7 @@ p {
     right:3%;
     top:10px;
     font-size: 6px;
+    overflow: auto;
 }
 .title {
     margin: 5px 3%;
@@ -55,7 +56,7 @@ p {
 }
 #previewer {
     width: 94%;
-    margin: 0 3%;
+    margin: 0 1.5%;
     padding: 0;
 }
 #masker {
