@@ -11,7 +11,12 @@
         <script src="static/main.js"></script>
     </head>
     <body>
-        <div style=" width:100%; max-width: 960px;text-align:center;margin:auto;">
+        <div id="list-area">
+            <div id="list-header">
+                <button id="menu-button"><i class="menu-icon"></i></button>
+            </div>
+        </div>
+        <div style=" width:100%; max-width: 960px;text-align:center;margin:auto;z-index:1;">
             <div class="title">
                 <input id="title-area" type="" name="" value="" placeholder="title">
             </div>
@@ -23,10 +28,5 @@
             <div id="previewer"></div>
         </div>
         <span id="vim-mode">INSERT MODE</span>
-        <div id="masker">
-            <div id="start">
-                <button id="btn-start">continue</button>
-            </div>
-        </div>
     </body>
 </html>
