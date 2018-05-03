@@ -1,0 +1,150 @@
+#previewer * {
+    margin: 0;
+    padding: 0;
+}
+#previewer {
+    font-family: helvetica, arial, freesans, clean, sans-serif;
+    color: black;
+    line-height: 1.4em;
+    padding: 0.7em;
+}
+#previewer p {
+    margin: 1em 0;
+    line-height: 1.5em;
+}
+#previewer table {
+    font-size: inherit;
+    font: 100%;
+    margin: 1em;
+}
+ #previewer table th {
+    border-bottom: 1px solid #bbb;
+    padding: .2em 1em;
+}
+#previewer table td {
+    border-bottom: 1px solid #ddd;
+    padding: .2em 1em;
+}
+#previewer input[type=text],
+#previewer input[type=password],
+#previewer input[type=image],
+#previewer textarea {
+    font: 99% helvetica, arial, freesans, sans-serif;
+}
+#previewer select,
+#previewer option {
+    padding: 0 .25em;
+}
+#previewer optgroup {
+    margin-top: .5em;
+}
+#previewer pre,
+#previewer code {
+    font: 90% Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+}
+#previewer pre {
+    margin: 1em 0;
+    font-size: 90%;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 5px;
+    line-height: 1.5em;
+    color: #444;
+    overflow: auto;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.07) 0 1px 2px inset;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#previewer pre code {
+    padding: 0;
+    font-size: 90%;
+    background-color: #eee;
+    border: none;
+}
+#previewer code {
+    font-size: 90%;
+    background-color: #f8f8ff;
+    color: #444;
+    padding: 0 .2em;
+    border: 1px solid #dedede;
+}
+#previewer img {
+    border: 0;
+    max-width: 100%;
+}
+#previewer abbr {
+    border-bottom: none;
+}
+#previewer a {
+    color: #4183c4;
+    text-decoration: none;
+}
+#previewer a:hover {
+    text-decoration: underline;
+}
+#previewer a code,
+#previewer a:link code,
+#previewer a:visited code {
+    color: #4183c4;
+}
+#previewer h2,
+#previewer h3 {
+    margin: 1em 0;
+}
+#previewer h1,
+#previewer h2,
+#previewer h3,
+#previewer h4,
+#previewer h5,
+#previewer h6 {
+    border: 0;
+}
+#previewer h1 {
+    font-size: 170%;
+    padding-top: .5em;
+}
+#previewer h2 {
+    font-size: 150%;
+    padding-top: .5em;
+}
+#previewer h3 {
+    margin-top: 1em;
+}
+#previewer hr {
+    border: 1px solid #ddd;
+}
+#previewer ul {
+    margin: 1em 0 1em 2em;
+}
+#previewer ol {
+    margin: 1em 0 1em 2em;
+}
+#previewer ul li,
+#previewer ol li {
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+#previewer ul ul,
+#previewer ul ol,
+#previewer ol ol,
+#previewer ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#previewer blockquote {
+    margin: 1em 0;
+    border-left: 2px solid #ddd;
+    padding-left: .6em;
+    color: #555;
+}
+#previewer dt {
+    font-weight: bold;
+    margin-left: 1em;
+}
+#previewer dd {
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
