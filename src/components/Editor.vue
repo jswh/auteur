@@ -2,11 +2,11 @@
     <div>
         <div style=" width:100%; max-width: 960px;text-align:center;margin:auto;z-index:1;">
             <div class="title">
-                <input id="title-area" type="" name="" v-model="title" placeholder="title">
+                <input id="title-area" type="" name="" v-model="articleTitle" placeholder="title" @change="change">
             </div>
         </div>
         <div class="large">
-            <textarea id="editor-area" class="editor" v-model="content"></textarea>
+            <textarea id="editor-area" class="editor" v-model="articleContent" @change="change"></textarea>
         </div>
         <div class="small">
             <div id="previewer" v-html="markdownContent"></div>
@@ -18,20 +18,42 @@
 import {markdown} from 'markdown'
 export default {
     name: "Editor",
-    props: {
-        storeKey: String
-    },
+    props: [
+        'article'
+    ],
     data() {
         return {
-            title: localStorage.getItem(this.storeKey + ':title') || "",
-            content: localStorage.getItem(this.storeKey + ':content') || ""
+            articleTitle: '',
+            articleContent: ''
         }
     },
     computed: {
         markdownContent() {
-            return markdown.toHTML(this.content)
+            return markdown.toHTML(this.articleContent)
         }
     },
+    watch: {
+        article(after, before) {
+            if (before) {
+                before.save()
+            }
+            console.log(after, before)
+            if (this.after) {
+                this.articleTitle = after.title
+                this.articleContent = after.content
+            } else {
+                this.articleTitle = ''
+                this.articleContent = ''
+            }
+        }
+    },
+    methods: {
+        change() {
+            if (this.articleTitle || this.articleContent) {
+                this.$emit('change', {title: this.articleTitle, content: this.articleContent})
+            }
+        }
+    }
 }
 </script>
 <style scoped>

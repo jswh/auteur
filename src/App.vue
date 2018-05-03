@@ -1,7 +1,7 @@
 <template> 
   <div>
-      <Sidebar :onArticleSelected=changeArticle :articleListing="listing" :onAdd="addArticle" :onDelete="deleteItem"></Sidebar>
-      <Editor :listing=articleListing></Editor>
+      <Sidebar :onArticleSelected=changeArticle :listing="articleListing" :onAdd="addArticle" :onDelete="deleteItem"></Sidebar>
+      <Editor @change="onArticleDataChange" :article=article></Editor>
   </div>
 </template>
 
@@ -18,30 +18,56 @@ export default {
   data() {
     return {
       article: null,
-      listing: []
+      articleListing: []
+    }
+  },
+  mounted() {
+    let listing = localStorage.getItem('articles')
+    try {
+      listing = JSON.parse(listing)
+      if (listing) {
+        this.articleListing = listing
+      } else {
+        this.saveListing()
+      }
+    } catch(e) {
+      this.saveListing()
+      console.error(e)
     }
   },
   methods: {
-    changeArticle() {
-
+    changeArticle(articleId) {
+      this.article = Article.load(articleId)
     },
-    onArticleTitleChange() {
-
+    onArticleDataChange(data) {
+      let article
+      if (!this.article) {
+        article = Article.build(data.title)          
+        article.content = data.content
+        this.articleListing.push({id: article.id, title: article.title})
+      } else {
+        article = Article.load(this.article.id)
+      }
+      article.title = data.title
+      article.content = data.content
+      article.save()
+      this.article = article
     }, 
     addArticle() {
         let d = new Date()
         let artile = Article.build(d.toUTCString())
-        this.listing.push({id: artile.id, title: artile.title})
+        this.articleListing.push({id: artile.id, title: artile.title})
         this.saveListing()
+        return artile
     },
     deleteItem(i, id) {
-        this.listing.splice(i, 1)
+        this.articleListing.splice(i, 1)
         this.saveListing()
         Article.del(id)
     },
     saveListing() {
-        localStorage.setItem('articles', JSON.stringify(this.listing))
-    }
+        localStorage.setItem('articles', JSON.stringify(this.articleListing))
+    },
   }
 }
 </script>
@@ -51,5 +77,8 @@ html,body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+div {
+  background-color: white;
 }
 </style>

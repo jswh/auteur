@@ -17,6 +17,17 @@ export class Article {
         return a
     }
 
+    static load(id) {
+        let a = new Article()
+        let data = JSON.parse(localStorage.getItem(id))
+        a.id = id
+        a.title = data.title
+        a.content = data.content
+        
+        return a
+
+    }
+
     static del(id) {
         localStorage.removeItem(id)
     }

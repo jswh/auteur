@@ -4,8 +4,8 @@
             <button id="menu-button"><i class="menu-icon" @click="show = !show"></i></button>
         </div>
         <ul v-if="show">
-            <li v-for="(t, i) in listing" v-bind:key="i" @click="selectedId = i" :class="{'selected': selectedId == i}">
-                <span> {{t.title}} </span> 
+            <li v-for="(t, i) in listing" v-bind:key="i" :class="{'selected': selectedId == i}">
+                <span @click="selectedId = i" > {{t.title}} </span> 
                 <button @click="onDelete(i, t.id)">删除</button>
             </li>
             <li @click="onAdd"></li>
