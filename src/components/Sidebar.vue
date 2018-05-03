@@ -4,18 +4,29 @@
             <button id="menu-button"><i class="menu-icon" @click="show = !show"></i></button>
         </div>
         <ul v-if="show">
-            <li v-for="i in listing" v-bind:key="i">{{i}}</li>
-            <li></li>
+            <li v-for="(t, i) in listing" v-bind:key="i" @click="selectedId = i" :class="{'selected': selectedId == i}">
+                <span> {{t.title}} </span> 
+                <button @click="onDelete(i, t.id)">删除</button>
+            </li>
+            <li @click="onAdd"></li>
         </ul>
     </div>
 </template>
 <script>
 export default {
     name: "Sidebar",
+    props: ['onArticleSelected', 'listing', 'onAdd', 'onDelete'],
     data() {
         return {
             show: true,
-            listing: []
+            selectedId: null
+        }
+    },
+    watch: {
+        selectedId(now, pre) {
+            if (now != pre) {
+                this.onArticleSelected(this.listing[now].id)
+            }
         }
     },
     mounted() {
@@ -23,7 +34,6 @@ export default {
         setTimeout(() => {
             that.show = false
         }, 200);
-        this.listing = JSON.parse(localStorage.getItem('articles')) || ['test']
     },
 }
 </script>
@@ -84,6 +94,9 @@ ul li {
     -webkit-transition: background-color 300ms linear;
     -ms-transition: background-color 300ms linear;
     transition: background-color 300ms linear;
+}
+ul li.selected {
+    background-color: #eee;
 }
 ul li:hover {
     background-color: #eee;
